@@ -13,7 +13,7 @@ define(function(){
         text: i,
         class: 'towers',
         id: 'tower' + i,
-        style: 'background-color: rgb(' + parseInt(i * 10) + ',' + parseInt(i * 30) + ',' + parseInt(i * 30) + ')',
+        style: 'background-color: rgb(' + parseInt(i * 15) + ',' + parseInt(i * 15) + ',' + parseInt(i * 15) + ')',
         width: i * 6.65 + '%'
       });
     },
@@ -21,6 +21,15 @@ define(function(){
       tower.numberOfTowers = null;
       tower.layerNumber = null;
       $('#winText').text('');
+    },
+    clickTower: function(towerClick, winCheck) {
+      tower.largestNumber = towerClick.find(':first-child').text() || Number.MAX_VALUE;
+      if (!tower.layerNumber) {
+        tower.removeLayer(towerClick);
+      } else if (tower.layerNumber < tower.largestNumber) {
+        tower.addLayer(towerClick);
+        winCheck && winCheck();
+      }
     },
     buildTower: function() {
       var i = 1;
@@ -44,7 +53,7 @@ define(function(){
     },
     winCheck: function() {
       if (tower.container3.children().length === tower.numberOfTowers) {
-        $('#winText').text('Congratulation you solved a game ' + tower.numberOfTowers + 'towers!!');
+        $('#winText').text('Congratulation you solved a game of ' + tower.numberOfTowers + ' towers!!');
       }
     }
   };

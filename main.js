@@ -8,29 +8,13 @@ require(['tower'], function(tower) {
       tower.buildTower();
     });
     tower.container1.click(function() {
-      tower.largestNumber = tower.container1.find(':first-child').text() || Number.MAX_VALUE;
-      if (!tower.layerNumber) {
-        tower.removeLayer($(this));
-      } else if (tower.layerNumber < tower.largestNumber) {
-        tower.addLayer($(this));
-      }
+			tower.clickTower($(this));
     });
     tower.container2.click(function() {
-      tower.largestNumber = tower.container2.find(':first-child').text() || Number.MAX_VALUE;
-      if (!tower.layerNumber) {
-        tower.removeLayer($(this));
-      } else if (tower.layerNumber < tower.largestNumber) {
-        tower.addLayer($(this));
-      }
+			tower.clickTower($(this));
     });
     tower.container3.click(function() {
-      tower.largestNumber = tower.container3.find(':first-child').text() || Number.MAX_VALUE;
-      if (!tower.layerNumber) {
-        tower.removeLayer($(this));
-      } else if (tower.layerNumber < tower.largestNumber) {
-        tower.addLayer($(this));
-        tower.winCheck();
-      }
+			tower.clickTower($(this), tower.winCheck);
     });
   });
-})
+});
